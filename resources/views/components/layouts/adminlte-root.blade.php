@@ -1,3 +1,4 @@
+{{-- File: resources/views/layouts/adminlte-root.blade.php --}}
 @include('partials.datatables')
 
 @extends('adminlte::page')
@@ -15,9 +16,13 @@
 @endsection
 
 @section('css')
+    {{-- Custom CSS stack --}}
+    @stack('css')
     @stack('custom-css')
 @endsection
 
 @section('js')
+    {{-- Custom JS stack --}}
+    @stack('js')
     @stack('custom-js')
 @endsection
