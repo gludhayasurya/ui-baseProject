@@ -1,0 +1,12 @@
+{
+  "preset": "laravel",
+  "rules": {
+    "array_syntax": { "syntax": "short" },
+    "no_unused_imports": true
+  },
+  "exclude": [
+    "storage",
+    "bootstrap/cache",
+    "docker"
+  ]
+}

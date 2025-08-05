@@ -21,12 +21,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
 
     Route::get('/users/{user}', [UserController::class, 'show']);
-Route::put('/users/{user}', [UserController::class, 'update']);
-Route::delete('/users/{user}', [UserController::class, 'destroy']);
-// Add user route
+    Route::put('/users/{user}', [UserController::class, 'update']);
+    Route::delete('/users/{user}', [UserController::class, 'destroy']);
+    // Add user route
 
-Route::post('/users', [UserController::class, 'store'])->name('users.store');
-
+    Route::post('/users', [UserController::class, 'store'])->name('users.store');
 
 });
 

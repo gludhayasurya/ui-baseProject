@@ -17,13 +17,13 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
+
         return view('users.list', compact('users'));
     }
 
     /**
      * Show a specific user.
      *
-     * @param User $user
      * @return \Illuminate\Http\JsonResponse
      */
     public function show(User $user)
@@ -32,12 +32,12 @@ class UserController extends Controller
             return response()->json([
                 'success' => true,
                 'data' => $user,
-                'message' => 'User retrieved successfully'
+                'message' => 'User retrieved successfully',
             ]);
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'message' => 'Failed to retrieve user data'
+                'message' => 'Failed to retrieve user data',
             ], 500);
         }
     }
@@ -45,7 +45,6 @@ class UserController extends Controller
     /**
      * Store a new user.
      *
-     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
@@ -62,7 +61,7 @@ class UserController extends Controller
                 return response()->json([
                     'success' => false,
                     'message' => 'Validation failed',
-                    'errors' => $validator->errors()
+                    'errors' => $validator->errors(),
                 ], 422);
             }
 
@@ -76,13 +75,13 @@ class UserController extends Controller
             return response()->json([
                 'success' => true,
                 'data' => $user,
-                'message' => 'User created successfully!'
+                'message' => 'User created successfully!',
             ], 201);
 
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'message' => 'Failed to create user. Please try again.'
+                'message' => 'Failed to create user. Please try again.',
             ], 500);
         }
     }
@@ -90,8 +89,6 @@ class UserController extends Controller
     /**
      * Update a user.
      *
-     * @param Request $request
-     * @param User $user
      * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, User $user)
@@ -99,14 +96,14 @@ class UserController extends Controller
         try {
             $validator = Validator::make($request->all(), [
                 'name' => 'required|string|max:255',
-                'email' => 'required|email|unique:users,email,' . $user->id,
+                'email' => 'required|email|unique:users,email,'.$user->id,
             ]);
 
             if ($validator->fails()) {
                 return response()->json([
                     'success' => false,
                     'message' => 'Validation failed',
-                    'errors' => $validator->errors()
+                    'errors' => $validator->errors(),
                 ], 422);
             }
 
@@ -118,13 +115,13 @@ class UserController extends Controller
             return response()->json([
                 'success' => true,
                 'data' => $user,
-                'message' => 'User updated successfully!'
+                'message' => 'User updated successfully!',
             ]);
 
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'message' => 'Failed to update user. Please try again.'
+                'message' => 'Failed to update user. Please try again.',
             ], 500);
         }
     }
@@ -132,23 +129,22 @@ class UserController extends Controller
     /**
      * Delete a user.
      *
-     * @param User $user
      * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(User $user)
     {
         try {
             $user->delete();
-            
+
             return response()->json([
                 'success' => true,
-                'message' => 'User deleted successfully!'
+                'message' => 'User deleted successfully!',
             ]);
 
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'message' => 'Failed to delete user. Please try again.'
+                'message' => 'Failed to delete user. Please try again.',
             ], 500);
         }
     }
